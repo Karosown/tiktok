@@ -1,8 +1,8 @@
-create database TikTok;
+create database if not exists TikTok;
 -- 用户
 create table if not exists TikTok.`user`
 (
-    `id` varchar(256) null auto_increment comment 'id' primary key,
+    `id` varchar(256) not null comment 'id' primary key,
     `userAccount` varchar(256) not null unique comment '账号',
     `userName` varchar(256) null comment '用户昵称',
     `userPassword` varchar(512) not null comment '密码',
@@ -10,8 +10,8 @@ create table if not exists TikTok.`user`
     `gender` tinyint null comment '性别',
     `followCount` bigint default 0 null comment '关注数',
     `flowerCount` bigint default 0 null comment '粉丝数',
-    `updateTime` datetime default 'CURRENT_TIMESTAMP' not null on update CURRENT_TIMESTAMP comment '更新时间',
-    `createTime` datetime default 'CURRENT_TIMESTAMP' not null comment '创建时间',
+    `updateTime` datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    `createTime` datetime default CURRENT_TIMESTAMP not null comment '创建时间',
     `isDelete` tinyint default 0 not null comment '是否删除'
 ) comment '用户';
 insert into TikTok.`user` (`id`, `userAccount`, `userName`, `userPassword`, `userAvatar`, `gender`, `followCount`, `flowerCount`, `updateTime`, `createTime`) values ('DOS', '黎思淼', '侯昊焱', 'jNDQ', 'www.napoleon-boyer.net', 1, 400323, 118514, '2022-12-29 09:50:44', '2022-07-29 13:18:13');
