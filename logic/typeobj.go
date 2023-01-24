@@ -43,7 +43,7 @@ type Message struct {
 // UserAvater   string `grom:"UserAvater"`   //头像
 // Gender       int16  `grom:"Gender"`       //性别
 // FollowCount  int64  `grom:"FollowCount"`  //关注数
-// FlowerCount  int64  `grom:"FlowerCount"`  //粉丝数
+// FollowerCount  int64  `grom:"FlowerCount"`  //粉丝数
 // UpdateTime   string `grom:"UpdateTime"`   //更新时间
 // CreateTime   string `grom:"CreateTime"`   //创建时间
 // IsDelete     int16  `grom:"IsDelete"`     //是否删除
