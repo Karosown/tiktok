@@ -9,9 +9,32 @@
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. xxxx
+2. xxxx
+3. xxxx
+    运行SQL/tiktok.sql即可建表，自带模拟数据
+Go Get 国内源设置
+这个时候我们需要需要国内源来进行加速
+首先需要我们开启Go的MODULL支持
+
+```bash
+SETX GO111MODULE on
+#然后我们需要进行更改Go的GOPROXY值
+
+go env -w GOPROXY=https://goproxy.cn,direct
+#1
+SETX来设置一下Windows的环境变量
+
+SETX GOPROXY=https://goproxy.cn,direct
+#接下来就可以正常使用了
+```
+
+# Gorm
+```bash
+$ go get -u github.com/jinzhu/gorm
+$ go get -u github.com/go-sql-driver/mysql
+```
+
 
 #### 使用说明
 
