@@ -18,6 +18,7 @@ func MysqlInit() {
 	v, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: newLogger,
 		NamingStrategy: schema.NamingStrategy{
+			//TablePrefix:   "t_", // 定义表前缀
 			SingularTable: true, // true不在表后面+ s，
 		},
 	})
