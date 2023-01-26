@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"log"
 	"net/http"
 	"tiktok/models"
 
@@ -9,6 +10,7 @@ import (
 
 // test
 func Feed(ctx *gin.Context) {
+	log.Println("feed has been called")
 	ctx.JSON(http.StatusOK, gin.H{
 		"status_code": 0,
 		"status_msg":  "",

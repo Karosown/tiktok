@@ -2,6 +2,8 @@ package web
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"tiktok/logic"
 
 	"github.com/gin-gonic/gin"
@@ -39,4 +41,14 @@ func MiddleWare() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fmt.Println("dsasf")
 	}
+}
+
+func init() {
+	logFile, err := os.OpenFile("./web/log/test.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+	if err != nil {
+		fmt.Println("open log file failed, err:", err)
+		return
+	}
+	log.SetOutput(logFile)
+	log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
 }
