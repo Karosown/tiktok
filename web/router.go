@@ -1,6 +1,7 @@
 package web
 
 import (
+	"fmt"
 	"tiktok/logic"
 
 	"github.com/gin-gonic/gin"
@@ -31,5 +32,11 @@ func RouterInit(router *gin.Engine) {
 		// 	apiRelation.POST("/follower/list/")
 		// 	apiRelation.POST("/friend/list/")
 		// }
+	}
+}
+
+func MiddleWare() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		fmt.Println("dsasf")
 	}
 }

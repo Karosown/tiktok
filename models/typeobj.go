@@ -1,4 +1,4 @@
-package logic
+package models
 
 type Status struct {
 	StatusCode int64  `json:"status_code"` // 状态码，0-成功，其他值-失败
