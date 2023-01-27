@@ -8,7 +8,6 @@ import (
 	"os"
 	"tiktok/config"
 	"tiktok/logic"
-	"tiktok/models"
 )
 
 var DB gorm.DB
@@ -22,10 +21,6 @@ func InitServer(router *gin.Engine) {
 
 	//初始化数据库
 	DB = *DBInit()
-	user := models.User{}
-	DB.Take(&user, 1)
-	fmt.Println(user)
-	fmt.Println(DB)
 }
 
 func RouterInit(router *gin.Engine) {

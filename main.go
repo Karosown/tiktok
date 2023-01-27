@@ -8,7 +8,6 @@ import (
 func main() {
 	r := gin.Default()
 	web.InitServer(r)
-	web.RouterInit(r)
 	//gin.SetMode(gin.ReleaseMode)
 	r.Run() //127.0.0.1:8080
 }
