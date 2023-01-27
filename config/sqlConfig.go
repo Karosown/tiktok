@@ -5,12 +5,11 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
-	"tiktok/models"
 )
 
 var Database *database
 
-func GetDB() *gorm.DB {
+func DBConfig() *gorm.DB {
 	c := Config{}
 	c = *InitConfig()
 	Database = &c.DB
@@ -27,10 +26,5 @@ func GetDB() *gorm.DB {
 		panic("连接数据库失败, error=" + err.Error())
 	}
 	// 连接成功
-	fmt.Println(db)
-	var user models.User
-	db.Take(&user, 1)
-	fmt.Println(user)
-	fmt.Println(c)
 	return db
 }

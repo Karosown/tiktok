@@ -12,14 +12,7 @@ import (
 */
 
 type Config struct {
-	Svc server   `yaml:"server"`   //server配置
-	DB  database `yaml:"database"` //数据库配置
-}
-
-type server struct {
-	Port     int    `yaml:"port"`
-	RunMode  string `yaml:"runMode"`
-	LogLevel string `yaml:"logLevel"`
+	DB database `yaml:"database"` //数据库配置
 }
 
 type database struct {
@@ -39,13 +32,7 @@ type database struct {
 */
 
 func (c Config) String() string {
-	return fmt.Sprintf("%v\n%v\n", c.Svc, c.DB)
-}
-
-func (s server) String() string {
-	return fmt.Sprintf("server : \n"+
-		"\tport : %v \n"+
-		"\tRunMode : %v", s.Port, s.RunMode)
+	return fmt.Sprintf("%v\n", c.DB)
 }
 
 func (m database) String() string {
@@ -79,7 +66,6 @@ func InitConfig() *Config {
 	}
 	log.Printf("load conf success\n %v", c)
 	// 绑定到外部可以访问的变量中
-	fmt.Printf("config.server: %#v\n", c.Svc)
 	fmt.Printf("config.data: %#v\n", c.DB)
 	return c
 }

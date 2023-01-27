@@ -1,8 +1,3 @@
-server:
-  port: 8000
-  runMode: debug # release debug
-  logLevel: debug # debug info warn error
-
 database:
   type: mysql
   host: localhost
