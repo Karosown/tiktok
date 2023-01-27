@@ -1,4 +1,4 @@
-package config
+package dao
 
 import (
 	"fmt"
@@ -66,6 +66,6 @@ func InitConfig() *Config {
 	}
 	log.Printf("load conf success\n %v", c)
 	// 绑定到外部可以访问的变量中
-	fmt.Printf("config.data: %#v\n", c.DB)
+	fmt.Printf("dao.data: %#v\n", c.DB)
 	return c
 }

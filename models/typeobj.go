@@ -1,40 +1,40 @@
 package models
 
 type Status struct {
-	StatusCode int64  `json:"status_code"` // 状态码，0-成功，其他值-失败
-	StatusMsg  string `json:"status_msg"`  // 返回状态描述
+	StatusCode int64  `gorm:"column:status_code" json:"StatusCode"` // 状态码，0-成功，其他值-失败
+	StatusMsg  string `gorm:"column:status_msg" json:"StatusMsg"`   // 返回状态描述
 }
 
 type Video struct {
-	Vid           int64  `json:"id"`             // 视频唯一标识
-	Author        User   `json:"author"`         // 视频作者信息
-	PlayUrl       string `json:"play_url"`       // 视频播放地址
-	CoverUrl      string `json:"cover_url"`      // 视频封面地址
-	FavoriteCount int64  `json:"favorite_count"` // 视频的点赞总数
-	CommentCount  int64  `json:"comment_count"`  // 视频的评论总数
-	IsFavorite    bool   `json:"is_favorite"`    // true-已点赞，false-未点赞
-	Title         string `json:"title"`          // 视频标题
+	Vid           int64  `gorm:"column:id" json:"Vid"`                       // 视频唯一标识
+	Author        User   `gorm:"column:author" json:"Author"`                // 视频作者信息
+	PlayUrl       string `gorm:"column:play_url" json:"PlayUrl"`             // 视频播放地址
+	CoverUrl      string `gorm:"column:cover_url" json:"CoverUrl"`           // 视频封面地址
+	FavoriteCount int64  `gorm:"column:favorite_count" json:"FavoriteCount"` // 视频的点赞总数
+	CommentCount  int64  `gorm:"column:comment_count" json:"CommentCount"`   // 视频的评论总数
+	IsFavorite    bool   `gorm:"column:is_favorite" json:"IsFavorite"`       // true-已点赞，false-未点赞
+	Title         string `gorm:"column:title" json:"Title"`                  // 视频标题
 }
 
 type User struct {
-	Uid           int64  `json:"id"`             // 用户id
-	Name          string `json:"name"`           // 用户名称
-	FollowCount   int64  `json:"follow_count"`   // 关注总数
-	FollowerCount int64  `json:"follower_count"` // 粉丝总数
-	IsFollow      bool   `json:"is_follow"`      // true-已关注，false-未关注
+	Uid           int64  `gorm:"column:id" json:"Uid"`                       // 用户id
+	Name          string `gorm:"column:name" json:"Name"`                    // 用户名称
+	FollowCount   int64  `gorm:"column:follow_count" json:"FollowCount"`     // 关注总数
+	FollowerCount int64  `gorm:"column:follower_count" json:"FollowerCount"` // 粉丝总数
+	IsFollow      bool   `gorm:"column:is_follow" json:"IsFollow"`           // true-已关注，false-未关注
 }
 
 type Comment struct {
-	Cid        int64  `json:"id"`          // 评论id
-	User       User   `json:"user"`        // 评论用户信息
-	Content    string `json:"content"`     // 评论内容
-	CreateDate string `json:"create_date"` // 评论发布日期，格式 mm-dd
+	Cid        int64  `gorm:"column:id" json:"Cid"`                 // 评论id
+	User       User   `gorm:"column:user" json:"User"`              // 评论用户信息
+	Content    string `gorm:"column:content" json:"Content"`        // 评论内容
+	CreateDate string `gorm:"column:create_date" json:"CreateDate"` // 评论发布日期，格式 mm-dd
 }
 
 type Message struct {
-	Mid        string `json:"id"`           // 消息id
-	Content    string `json:"content"`      // 消息内容
-	CreateTime int64  `json:" create_time"` // 消息发送时间 yyyy-MM-dd HH:MM:ss
+	Mid        string `gorm:"column:id" json:"Mid"`                  // 消息id
+	Content    string `gorm:"column:content" json:"Content"`         // 消息内容
+	CreateTime int64  `gorm:"column: create_time" json:"CreateTime"` // 消息发送时间 yyyy-MM-dd HH:MM:ss
 }
 
 // UserAccount  string `grom:"userAccount"`  //账号

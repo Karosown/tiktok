@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"os"
-	"tiktok/config"
+	"tiktok/dao"
 	"tiktok/logic"
 )
 
@@ -68,7 +68,7 @@ func LogInit() {
 }
 
 func DBInit() *gorm.DB {
-	return config.DBConfig()
+	return dao.DBConfig()
 }
 
 func GetDB() *gorm.DB {
