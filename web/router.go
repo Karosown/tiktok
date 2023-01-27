@@ -2,22 +2,25 @@ package web
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"log"
 	"os"
+	"tiktok/dao"
 	"tiktok/logic"
-
-	"github.com/gin-gonic/gin"
 )
+
+var DB gorm.DB
 
 func InitServer(router *gin.Engine) {
 	//初始化路由
 	RouterInit(router)
 
 	//初始化日志
-	Loginit()
+	LogInit()
 
 	//初始化数据库
-
+	DB = *DBInit()
 }
 
 func RouterInit(router *gin.Engine) {
@@ -56,4 +59,12 @@ func Loginit() {
 	}
 	log.SetOutput(logFile)
 	log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
+}
+
+func DBInit() *gorm.DB {
+	return dao.DBConfig()
+}
+
+func GetDB() *gorm.DB {
+	return &DB
 }
