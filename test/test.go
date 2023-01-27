@@ -1,9 +1,8 @@
-package test
+package dbtest
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 type People struct {

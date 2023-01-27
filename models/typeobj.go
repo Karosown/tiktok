@@ -14,6 +14,7 @@ type Video struct {
 	CommentCount  int64  `json:"comment_count"`  // 视频的评论总数
 	IsFavorite    bool   `json:"is_favorite"`    // true-已点赞，false-未点赞
 	Title         string `json:"title"`          // 视频标题
+	NextTime      int64  `json:"next_time"`      //时间
 }
 
 type User struct {
@@ -22,6 +23,7 @@ type User struct {
 	FollowCount   int64  `json:"follow_count"`   // 关注总数
 	FollowerCount int64  `json:"follower_count"` // 粉丝总数
 	IsFollow      bool   `json:"is_follow"`      // true-已关注，false-未关注
+	Token         string `json:"token"`          //用户授权Token
 }
 
 type Comment struct {

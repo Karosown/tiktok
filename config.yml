@@ -1,0 +1,16 @@
+server:
+  port: 8000
+  runMode: debug # release debug
+  logLevel: debug # debug info warn error
+
+database:
+  type: mysql
+  host: localhost
+  port: 3306
+  username: root
+  password: W1281409960
+  dbname: tiktok
+  max_idle_conn: 10
+  max_open_conn: 30
+  conn_max_lifetime: 300s
+
