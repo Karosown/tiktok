@@ -1,19 +1,25 @@
 package web
 
 import (
-	"fmt"
 	"tiktok/logic"
 
 	"github.com/gin-gonic/gin"
 )
 
+func InitServer(router *gin.Engine) {
+	//初始化路由
+	RouterInit(router)
+
+	//初始化数据库
+}
+
 func RouterInit(router *gin.Engine) {
 	apiRouter := router.Group("/douyin")
 	{
 		//basic api
-		apiRouter.GET("/feed/", logic.Feed)
+		apiRouter.GET("/feed/", CheckToken(), logic.Feed) //中间件和路由在同一层时会优先执行路由
 		// apiRouter.POST("/user/register/")
-		// apiRouter.POST("/user/login/")
+		apiRouter.POST("/user/login/", logic.Login)
 		// apiRouter.GET("/user/")
 		// apiRouter.POST("/publish/action/")
 		// apiRouter.GET("/publish/list/")
@@ -35,8 +41,8 @@ func RouterInit(router *gin.Engine) {
 	}
 }
 
-func MiddleWare() gin.HandlerFunc {
+func CheckToken() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		fmt.Println("dsasf")
+		//验证token
 	}
 }
