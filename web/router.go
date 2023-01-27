@@ -24,7 +24,7 @@ func RouterInit(router *gin.Engine) {
 	apiRouter := router.Group("/douyin")
 	{
 		//basic api
-		apiRouter.GET("/feed/", CheckToken(), logic.Feed) //中间件和路由在同一层时会优先执行路由
+		apiRouter.GET("/feed/", logic.Feed) //中间件和路由在同一层时会优先执行路由
 		// apiRouter.POST("/user/register/")
 		apiRouter.POST("/user/login/", logic.Login)
 		// apiRouter.GET("/user/")
@@ -45,12 +45,6 @@ func RouterInit(router *gin.Engine) {
 		// 	apiRelation.POST("/follower/list/")
 		// 	apiRelation.POST("/friend/list/")
 		// }
-	}
-}
-
-func CheckToken() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		//验证token
 	}
 }
 
