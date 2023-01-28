@@ -51,7 +51,7 @@ func RouterInit(router *gin.Engine) {
 	}
 }
 
-func Loginit() {
+func LogInit() {
 	logFile, err := os.OpenFile("./web/log/test.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		fmt.Println("open log file failed, err:", err)
