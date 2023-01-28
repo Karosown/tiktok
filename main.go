@@ -1,15 +1,13 @@
 package main
 
 import (
-	"tiktok/config"
-	"tiktok/routers"
-
 	"github.com/gin-gonic/gin"
+	"tiktok/web"
 )
 
 func main() {
-	config.MysqlInit()
 	r := gin.Default()
-	routers.RouterInit(r)
+	web.InitServer(r)
+	//gin.SetMode(gin.ReleaseMode)
 	r.Run() //127.0.0.1:8080
 }

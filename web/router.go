@@ -4,27 +4,31 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"tiktok/dao"
 	"tiktok/logic"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
+
+var DB gorm.DB
 
 func InitServer(router *gin.Engine) {
 	//初始化路由
 	RouterInit(router)
 
 	//初始化日志
-	Loginit()
+	LogInit()
 
 	//初始化数据库
-
+	DB = *DBInit()
 }
 
 func RouterInit(router *gin.Engine) {
 	apiRouter := router.Group("/douyin")
 	{
 		//basic api
-		apiRouter.GET("/feed/", CheckToken(), logic.Feed) //中间件和路由在同一层时会优先执行路由
+		apiRouter.GET("/feed/", logic.Feed) //中间件和路由在同一层时会优先执行路由
 		// apiRouter.POST("/user/register/")
 		apiRouter.POST("/user/login/", logic.Login)
 		// apiRouter.GET("/user/")
@@ -48,13 +52,7 @@ func RouterInit(router *gin.Engine) {
 	}
 }
 
-func CheckToken() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		//验证token
-	}
-}
-
-func Loginit() {
+func LogInit() {
 	logFile, err := os.OpenFile("./web/log/test.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		fmt.Println("open log file failed, err:", err)
@@ -62,4 +60,12 @@ func Loginit() {
 	}
 	log.SetOutput(logFile)
 	log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
+}
+
+func DBInit() *gorm.DB {
+	return dao.DBConfig()
+}
+
+func GetDB() *gorm.DB {
+	return &DB
 }
