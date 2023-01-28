@@ -1,7 +1,7 @@
 package logic
 
 import (
-	"log"
+	"github.com/sirupsen/logrus"
 	"net/http"
 	"tiktok/models"
 
@@ -10,13 +10,17 @@ import (
 
 // test
 func Feed(ctx *gin.Context) {
-	log.Println("feed has been called")
+	logrus.Debug("check something")
+	logrus.Error("hello,world")
 	ctx.JSON(http.StatusOK, gin.H{
 		"status_code": 0,
 		"status_msg":  "",
 		"user_id":     123,
 		"token":       "",
 	})
+	//测试logrus
+	logrus.Debug("check something")
+	logrus.Error("hello,world")
 }
 
 // test

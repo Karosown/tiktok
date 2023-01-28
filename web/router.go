@@ -1,14 +1,13 @@
 package web
 
 import (
-	"fmt"
-	"log"
-	"os"
+	"github.com/gin-gonic/gin"
+	"github.com/lestrrat-go/file-rotatelogs"
+	"github.com/sirupsen/logrus"
+	"gorm.io/gorm"
 	"tiktok/dao"
 	"tiktok/logic"
-
-	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
+	"time"
 )
 
 var DB gorm.DB
@@ -53,15 +52,32 @@ func RouterInit(router *gin.Engine) {
 }
 
 func LogInit() {
-	logFile, err := os.OpenFile("./web/log/test.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
-	if err != nil {
-		fmt.Println("open log file failed, err:", err)
-		return
-	}
-	log.SetOutput(logFile)
-	log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
-}
+	//定位文件夹
+	path := "./web/log/test.log"
 
+	/* 日志轮转相关函数
+	`WithLinkName` 为最新的日志建立软连接
+	`WithRotationTime` 设置日志分割的时间，隔多久分割一次
+	WithMaxAge 和 WithRotationCount二者只能设置一个
+	  `WithMaxAge` 设置文件清理前的最长保存时间
+	  `WithRotationCount` 设置文件清理前最多保存的个数
+	*/
+	// 下面配置日志每隔 1 分钟轮转一个新文件，保留最近 3 分钟的日志文件，多余的自动清理掉。
+	writer, _ := rotatelogs.New(
+		path+".%Y%m%d%H",
+		//创建新log与旧log位于同一目录下
+		rotatelogs.WithLinkName(path),
+		//两小时建一个新log文件
+		rotatelogs.WithRotationTime(time.Duration(2)*time.Hour),
+		//至多有三个log文件
+		rotatelogs.WithRotationTime(3),
+	)
+	logrus.SetOutput(writer)
+	logrus.SetReportCaller(true)
+	logrus.SetFormatter(&logrus.TextFormatter{
+		TimestampFormat: "2006-01-02 15:04:05",
+	}) //log.SetFormatter(&log.JSONFormatter{})
+}
 func DBInit() *gorm.DB {
 	return dao.DBConfig()
 }
