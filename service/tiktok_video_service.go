@@ -4,23 +4,23 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"tiktok/common"
-	"tiktok/refence/model"
+	"tiktok/models"
 )
 
-var UserService = userService{}
+var TiktokVideoService = tiktokVideoService{}
 
-// userService 业务层
-type userService struct {
+// tiktokVideoService 业务层
+type tiktokVideoService struct {
 }
 
-func (t userService) db() *gorm.DB {
+func (t tiktokVideoService) db() *gorm.DB {
 	return common.Db
 }
 
 // List 分页列表
-func (t userService) List(page, size int, v *model.User) map[string]interface{} {
+func (t tiktokVideoService) List(page, size int, v *models.TiktokVideo) map[string]interface{} {
 	// 结果
-	var lists []model.User
+	var lists []models.TiktokVideo
 	t.db().Model(&v).Where(&v).Order("").Offset((page - 1) * size).Limit(size).Find(&lists)
 	// 统计
 	var total int64
@@ -32,8 +32,8 @@ func (t userService) List(page, size int, v *model.User) map[string]interface{} 
 }
 
 // One 根据主键Id查询记录
-func (t userService) One(id interface{}) model.User {
-	var v model.User
+func (t tiktokVideoService) One(id interface{}) models.TiktokVideo {
+	var v models.TiktokVideo
 	db := t.db().Find(&v, id)
 	if db.RowsAffected != 1 {
 		log.Println("未找到数据！")
@@ -42,7 +42,7 @@ func (t userService) One(id interface{}) model.User {
 }
 
 // Update 修改记录 true -> 操作成功
-func (t userService) Update(v model.User) bool {
+func (t tiktokVideoService) Update(v models.TiktokVideo) bool {
 	tx := t.db().Model(&v).Updates(v)
 	if tx.Error != nil {
 		log.Panicln(tx.Error.Error())
@@ -52,7 +52,7 @@ func (t userService) Update(v model.User) bool {
 }
 
 // Insert 插入记录 true -> 操作成功 注: 主键也传递进来的话，那么就会执行更新或插入操作
-func (t userService) Insert(v model.User) bool {
+func (t tiktokVideoService) Insert(v models.TiktokVideo) bool {
 	tx := t.db().Save(&v)
 	if tx.Error != nil {
 		log.Panicln(tx.Error.Error())
@@ -62,8 +62,8 @@ func (t userService) Insert(v model.User) bool {
 }
 
 // Delete 根据主键删除 true -> 操作成功
-func (t userService) Delete(ids []int) bool {
-	tx := t.db().Delete(model.User{}, ids)
+func (t tiktokVideoService) Delete(ids []int) bool {
+	tx := t.db().Delete(models.TiktokVideo{}, ids)
 	if tx.Error != nil {
 		log.Panicln(tx.Error.Error())
 		return false

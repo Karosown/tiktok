@@ -21,6 +21,8 @@ CREATE TABLE TIKTOK_USER
 (
     `uid`            int UNSIGNED UNIQUE NOT NULL COMMENT '用户id',
     `name`           VARCHAR(255) COMMENT '用户名称',
+    `username`           VARCHAR(255) COMMENT '用户账号',
+    `userpassword`           VARCHAR(255) COMMENT '用户密码',
     `follow_count`   Long COMMENT '关注总数',
     `follower_count` Long COMMENT '粉丝总数',
     `is_follow`      Bool COMMENT '是否关注',

@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 	"net/http"
 	"tiktok/common"
-	"tiktok/model"
+	"tiktok/refence/model"
 	"tiktok/refence/util"
 	"tiktok/service"
 )
