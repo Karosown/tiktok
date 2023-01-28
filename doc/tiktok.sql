@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS TIKTOK_USER;
 CREATE TABLE TIKTOK_USER
 (
     `uid`            int UNSIGNED UNIQUE NOT NULL COMMENT '用户id',
+    `password`       VARCHAR(255) COMMENT '用户密码',
     `name`           VARCHAR(255) COMMENT '用户名称',
     `follow_count`   Long COMMENT '关注总数',
     `follower_count` Long COMMENT '粉丝总数',
