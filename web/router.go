@@ -1,13 +1,14 @@
 package web
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/lestrrat-go/file-rotatelogs"
-	"github.com/sirupsen/logrus"
-	"gorm.io/gorm"
 	"tiktok/dao"
 	"tiktok/logic"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	rotatelogs "github.com/lestrrat/go-file-rotatelogs"
+	"github.com/sirupsen/logrus"
+	"gorm.io/gorm"
 )
 
 var DB gorm.DB
