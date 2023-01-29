@@ -3,7 +3,7 @@ database:
   host: localhost
   port: 3306
   username: root
-  password: ecy5211314
+  password: 147258369qQ
   dbname: tiktok
   max_idle_conn: 10
   max_open_conn: 30

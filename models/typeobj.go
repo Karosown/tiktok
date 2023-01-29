@@ -17,11 +17,12 @@ type Video struct {
 }
 
 type User struct {
-	Uid           int64  `gorm:"column:id" json:"Uid"`                       // 用户id
-	Name          string `gorm:"column:name" json:"Name"`                    // 用户名称
-	FollowCount   int64  `gorm:"column:follow_count" json:"FollowCount"`     // 关注总数
-	FollowerCount int64  `gorm:"column:follower_count" json:"FollowerCount"` // 粉丝总数
-	IsFollow      bool   `gorm:"column:is_follow" json:"IsFollow"`           // true-已关注，false-未关注
+	Uid           int64  `gorm:"column:uid;primary_key;AUTO_INCREMENT" json:"Uid"` // 用户id
+	Name          string `gorm:"column:name" json:"Name"`                          // 用户名称
+	FollowCount   int64  `gorm:"column:follow_count" json:"FollowCount"`           // 关注总数
+	FollowerCount int64  `gorm:"column:follower_count" json:"FollowerCount"`       // 粉丝总数
+	IsFollow      bool   `gorm:"column:is_follow" json:"IsFollow"`                 // true-已关注，false-未关注
+
 }
 
 type Comment struct {

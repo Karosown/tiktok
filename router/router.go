@@ -1,4 +1,4 @@
-package web
+package router
 
 import (
 	"tiktok/dao"
@@ -29,7 +29,7 @@ func RouterInit(router *gin.Engine) {
 	{
 		//basic api
 		apiRouter.GET("/feed/", logic.Feed) //中间件和路由在同一层时会优先执行路由
-		// apiRouter.POST("/user/register/")
+		apiRouter.POST("/user/register/", logic.Register)
 		apiRouter.POST("/user/login/", logic.Login)
 		// apiRouter.GET("/user/")
 		// apiRouter.POST("/publish/action/")
