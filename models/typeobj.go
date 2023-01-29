@@ -6,7 +6,7 @@ type Status struct {
 }
 
 type Video struct {
-	Vid           int64  `gorm:"column:id" json:"Vid"`                       // 视频唯一标识
+	Vid           int64  `gorm:"column:vid" json:"Vid"`                      // 视频唯一标识
 	Author        User   `gorm:"column:author" json:"Author"`                // 视频作者信息
 	PlayUrl       string `gorm:"column:play_url" json:"PlayUrl"`             // 视频播放地址
 	CoverUrl      string `gorm:"column:cover_url" json:"CoverUrl"`           // 视频封面地址
@@ -17,7 +17,7 @@ type Video struct {
 }
 
 type User struct {
-	Uid           int64  `gorm:"column:id" json:"Uid"`                       // 用户id
+	Uid           int64  `gorm:"column:uid" json:"Uid"`                      // 用户id
 	Name          string `gorm:"column:name" json:"Name"`                    // 用户名称
 	FollowCount   int64  `gorm:"column:follow_count" json:"FollowCount"`     // 关注总数
 	FollowerCount int64  `gorm:"column:follower_count" json:"FollowerCount"` // 粉丝总数
@@ -25,16 +25,16 @@ type User struct {
 }
 
 type Comment struct {
-	Cid        int64  `gorm:"column:id" json:"Cid"`                 // 评论id
+	Cid        int64  `gorm:"column:cid" json:"Cid"`                // 评论id
 	User       User   `gorm:"column:user" json:"User"`              // 评论用户信息
 	Content    string `gorm:"column:content" json:"Content"`        // 评论内容
 	CreateDate string `gorm:"column:create_date" json:"CreateDate"` // 评论发布日期，格式 mm-dd
 }
 
 type Message struct {
-	Mid        string `gorm:"column:id" json:"Mid"`                  // 消息id
-	Content    string `gorm:"column:content" json:"Content"`         // 消息内容
-	CreateTime int64  `gorm:"column: create_time" json:"CreateTime"` // 消息发送时间 yyyy-MM-dd HH:MM:ss
+	Mid        string `gorm:"column:mid" json:"Mid"`                // 消息id
+	Content    string `gorm:"column:content" json:"Content"`        // 消息内容
+	CreateTime int64  `gorm:"column:create_time" json:"CreateTime"` // 消息发送时间 yyyy-MM-dd HH:MM:ss
 }
 
 // UserAccount  string `grom:"userAccount"`  //账号

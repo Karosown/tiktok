@@ -27,7 +27,7 @@ func CreateToken(uid int64, username string) (string, error) { //不同客户端
 			Issuer:    "tiktok",                      //签发人
 		},
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claim) //获取token
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim) //获取token        //密钥类型问题
 	return token.SignedString(sign)                           //sign为签名，此操作可获得完整的签名令牌(sign token)
 }
 
