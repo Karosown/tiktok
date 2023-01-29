@@ -25,8 +25,8 @@ type insert struct {
 	FollowCount   int64  `gorm:"column:follow_count" json:"FollowCount"`           // 关注总数
 	FollowerCount int64  `gorm:"column:follower_count" json:"FollowerCount"`       // 粉丝总数
 	IsFollow      bool   `gorm:"column:is_follow" json:"IsFollow"`                 // true-已关注，false-未关注
-	Password      string `gorm:"column:password"`
-	Token         string `gorm:"column:token"`
+	Password      string `gorm:"column:password" json:"PassWord"`
+	Token         string `gorm:"column:token" json:"Token"`
 }
 
 func Register(ctx *gin.Context) {
