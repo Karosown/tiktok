@@ -32,9 +32,9 @@ type Comment struct {
 }
 
 type Message struct {
-	Mid        string `gorm:"column:mid" json:"Mid"`                 // 消息id
-	Content    string `gorm:"column:content" json:"Content"`         // 消息内容
-	CreateTime int64  `gorm:"column: create_time" json:"CreateTime"` // 消息发送时间 yyyy-MM-dd HH:MM:ss
+	Mid        string `gorm:"column:mid" json:"Mid"`                // 消息id
+	Content    string `gorm:"column:content" json:"Content"`        // 消息内容
+	CreateTime int64  `gorm:"column:create_time" json:"CreateTime"` // 消息发送时间 yyyy-MM-dd HH:MM:ss
 }
 
 // UserAccount  string `grom:"userAccount"`  //账号
