@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"tiktok/dao"
 	"tiktok/models"
+	"tiktok/web"
 )
 
 func (p Information) TableName() string {
@@ -32,7 +33,7 @@ func Informatin(ctx *gin.Context) {
 	tx := db.Begin()
 	user := Information{}
 	result := tx.Where("uid=?", uid).Find(&user)
-	if result.Error != nil || user.Token != token {
+	if result.Error != nil {
 		logrus.Error("注册查询信息失败")
 		ctx.JSON(http.StatusBadRequest, informationresponse{
 			Status: models.Status{
@@ -40,6 +41,33 @@ func Informatin(ctx *gin.Context) {
 				StatusMsg:  "注册返回信息失败",
 			},
 		})
+	}
+	_, err := web.ParseToken(token)
+	if err != nil {
+		restoken, err := web.CreateToken(user.Uid, user.Name)
+		if err != nil {
+			logrus.Error("重发token失败")
+			ctx.JSON(http.StatusBadRequest, informationresponse{
+				Status: models.Status{
+					StatusCode: -1,
+					StatusMsg:  "fail",
+				},
+			})
+			tx.Rollback()
+			return
+		}
+		err = tx.Where("uid = ?", uid).Update("token", restoken).Error
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, informationresponse{
+				Status: models.Status{
+					StatusCode: -1,
+					StatusMsg:  "注册返回信息失败",
+				},
+			})
+			logrus.Error("login,db.Updata:更新token失败...")
+			tx.Rollback()
+			return
+		}
 	}
 	ctx.JSON(http.StatusOK, informationresponse{
 		Status: models.Status{
@@ -54,4 +82,5 @@ func Informatin(ctx *gin.Context) {
 			IsFollow:      user.IsFollow,
 		},
 	})
+	tx.Commit()
 }

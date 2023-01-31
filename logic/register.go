@@ -42,6 +42,12 @@ func Register(ctx *gin.Context) {
 		}
 		res := tx.Create(p)
 		if res.Error != nil {
+			ctx.JSON(http.StatusBadRequest, informationresponse{
+				Status: models.Status{
+					StatusCode: -1,
+					StatusMsg:  "失败",
+				},
+			})
 			logrus.Error("插入数据失败")
 			tx.Rollback()
 			return
@@ -49,22 +55,31 @@ func Register(ctx *gin.Context) {
 		uid := p.Uid
 		token, err := web.CreateToken(uid, username)
 		if err != nil {
+			ctx.JSON(http.StatusBadRequest, registeresponse{
+				StatusCode: -1, StatusMsg: "fail", Token: "", UserID: 0,
+			})
+
 			logrus.Error("built token error")
 			tx.Rollback()
 			return
 		}
-		tx.Model(&insert{
+		err = tx.Model(&insert{
 			Uid: uid,
-		}).Where("Name=?", username).Update("Token", token)
-
+		}).Where("Name=?", username).Update("Token", token).Error
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, registeresponse{
+				StatusCode: -1, StatusMsg: "fail", Token: "", UserID: 0,
+			})
+			logrus.Error("更新token失败")
+		}
 		ctx.JSON(http.StatusOK, registeresponse{
 			StatusCode: 0, StatusMsg: "success", Token: token, UserID: uid,
 		})
 
-	} else {
-		ctx.JSON(http.StatusBadRequest, registeresponse{
-			StatusCode: -1, StatusMsg: "fail", Token: "", UserID: 0,
-		})
 	}
+	ctx.JSON(http.StatusBadRequest, registeresponse{
+		StatusCode: -1, StatusMsg: "fail", Token: "", UserID: 0,
+	})
+
 	tx.Commit()
 }
