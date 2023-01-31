@@ -4,7 +4,7 @@ USE TIKTOK;
 DROP TABLE IF EXISTS TIKTOK_VIDEO;
 CREATE TABLE TIKTOK_VIDEO
 (
-    `vid`            int UNSIGNED UNIQUE NOT NULL COMMENT '视频唯一标识',
+    `vid`            int UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL COMMENT '视频唯一标识',
     `author`         int UNSIGNED COMMENT '视频作者id',
     `play_url`       VARCHAR(255) COMMENT '视频播放地址',
     `cover_url`      VARCHAR(255) COMMENT '视频封面地址',
@@ -19,7 +19,7 @@ CREATE TABLE TIKTOK_VIDEO
 DROP TABLE IF EXISTS TIKTOK_USER;
 CREATE TABLE TIKTOK_USER
 (
-    `uid`            int UNSIGNED UNIQUE NOT NULL COMMENT '用户id',
+    `uid`            int UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL COMMENT '用户id',
     `password`       VARCHAR(255) COMMENT '用户密码',
     `name`           VARCHAR(255) COMMENT '用户名称',
     `follow_count`   Long COMMENT '关注总数',
@@ -32,7 +32,7 @@ CREATE TABLE TIKTOK_USER
 DROP TABLE IF EXISTS TIKTOK_COMMENT;
 CREATE TABLE TIKTOK_COMMENT
 (
-    `cid`         int UNSIGNED UNIQUE NOT NULL COMMENT '评论id',
+    `cid`         int UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL COMMENT '评论id',
     `uid`         int UNSIGNED COMMENT '评论用户id',
     `content`     VARCHAR(255) COMMENT '评论内容',
     `create_date` VARCHAR(255) COMMENT '评论发布日期',
@@ -42,7 +42,7 @@ CREATE TABLE TIKTOK_COMMENT
 DROP TABLE IF EXISTS TIKTOK_MESSAGE;
 CREATE TABLE TIKTOK_MESSAGE
 (
-    `mid`         int UNSIGNED UNIQUE NOT NULL COMMENT '消息id',
+    `mid`         int UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL COMMENT '消息id',
     `content`     VARCHAR(255) COMMENT '消息内容',
     `create_time` VARCHAR(255) COMMENT '消息发送时间',
     PRIMARY KEY (MID)
