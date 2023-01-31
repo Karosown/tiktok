@@ -1,0 +1,1 @@
+time="2023-01-31 12:22:46" level=error msg="注册查询信息失败" func=tiktok/logic.Informatin file="C:/Users/lcm/Desktop/gocode/tiktok/logic/useinformation.go:32"

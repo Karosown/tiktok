@@ -31,7 +31,7 @@ func RouterInit(router *gin.Engine) {
 		apiRouter.GET("/feed/", logic.Feed) //中间件和路由在同一层时会优先执行路由
 		apiRouter.POST("/user/register/", logic.Register)
 		apiRouter.POST("/user/login/", logic.Login)
-		// apiRouter.GET("/user/")
+		apiRouter.GET("/user/", logic.Informatin)
 		// apiRouter.POST("/publish/action/")
 		// apiRouter.GET("/publish/list/")
 
