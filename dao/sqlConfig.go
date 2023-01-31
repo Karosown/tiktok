@@ -34,11 +34,6 @@ func DBInit() {
 	// 连接成功
 }
 
-/*
- *
- *
- *
- **/
 func GetDB(ctx context.Context) *gorm.DB {
 	return DB.WithContext(ctx)
 }
