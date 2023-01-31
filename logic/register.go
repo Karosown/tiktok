@@ -65,7 +65,7 @@ func Register(ctx *gin.Context) {
 		}
 		err = tx.Model(&insert{
 			Uid: uid,
-		}).Where("Name=?", username).Update("Token", token).Error
+		}).Update("Token", token).Error
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, registeresponse{
 				StatusCode: -1, StatusMsg: "fail", Token: "", UserID: 0,
@@ -77,9 +77,7 @@ func Register(ctx *gin.Context) {
 		})
 
 	}
-	ctx.JSON(http.StatusBadRequest, registeresponse{
-		StatusCode: -1, StatusMsg: "fail", Token: "", UserID: 0,
-	})
+	
 
 	tx.Commit()
 }

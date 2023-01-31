@@ -56,7 +56,7 @@ func Informatin(ctx *gin.Context) {
 			tx.Rollback()
 			return
 		}
-		err = tx.Where("uid = ?", uid).Update("token", restoken).Error
+		err = tx.Model(&models.User{Uid:user.Uid}).Update("token", restoken).Error
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, informationresponse{
 				Status: models.Status{
