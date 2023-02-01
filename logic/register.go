@@ -77,7 +77,7 @@ func Register(ctx *gin.Context) {
 		})
 
 	}
-	
+
 
 	tx.Commit()
 }

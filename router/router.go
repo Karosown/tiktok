@@ -31,7 +31,7 @@ func RouterInit(router *gin.Engine) {
 		apiRouter.GET("/feed/", logic.Feed) //中间件和路由在同一层时会优先执行路由
 		apiRouter.POST("/user/register/", logic.Register)
 		apiRouter.POST("/user/login/", logic.Login)
-		apiRouter.GET("/user/", logic.Informatin)
+		apiRouter.GET("/user/", logic.Information)
 		// apiRouter.POST("/publish/action/")
 		// apiRouter.GET("/publish/list/")
 
@@ -52,16 +52,6 @@ func RouterInit(router *gin.Engine) {
 	}
 }
 
-// 六种日志等级，分别是完全兼容golang标准库日志模块：logrus拥有六种日志级别：debug、info、warn、error、fatal和panic
-// 日志输出设置的txt格式
-// 日志限制等级设为warn ，即warn以上的等级才会写入日志中，依赖于函数setlevel（warnlevel），可设置
-
-// 日常用api，六个等级对应6个api
-// logrus.error("xxxx错误")
-// logrus.info("hello,world")
-// logrus.debug("xxxx")
-// 等等依次类推
-// 关于日志切割实现和设置看LogInit函数
 func LogInit() {
 	//定位文件夹
 	path := "./web/log/test.log"

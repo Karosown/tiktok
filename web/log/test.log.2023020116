@@ -1,0 +1,5 @@
+time="2023-02-01 16:52:49" level=error msg="hello,world" func=tiktok/logic.Feed file="C:/Users/lcm/Desktop/gocode/tiktok/logic/feed.go:17"
+time="2023-02-01 16:52:49" level=error msg="hello,world" func=tiktok/logic.Feed file="C:/Users/lcm/Desktop/gocode/tiktok/logic/feed.go:41"
+time="2023-02-01 16:53:20" level=error msg="hello,world" func=tiktok/logic.Feed file="C:/Users/lcm/Desktop/gocode/tiktok/logic/feed.go:17"
+time="2023-02-01 16:53:20" level=error msg="hello,world" func=tiktok/logic.Feed file="C:/Users/lcm/Desktop/gocode/tiktok/logic/feed.go:41"
+time="2023-02-01 16:53:30" level=error msg="login,db.Updata:更新token失败..." func=tiktok/logic.Informatin file="C:/Users/lcm/Desktop/gocode/tiktok/logic/useinformation.go:68"

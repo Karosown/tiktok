@@ -26,6 +26,7 @@ CREATE TABLE TIKTOK_USER
     `follower_count` Long COMMENT '粉丝总数',
     `is_follow`      Bool COMMENT '是否关注',
     `token`          varchar(255) COMMENT '用户授权token',
+    `love_video`    text(65535) COMMENT '喜欢视频列表',
     PRIMARY KEY (UID)
 ) COMMENT = '用户';
 
